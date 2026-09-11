@@ -19,11 +19,7 @@ export default function TrainerCertificates() {
         .map((enrollment) => ({
           trainee,
           enrollment,
-          course: courses.find(
-            (course) =>
-              course.id === enrollment.courseId ||
-              course.title === enrollment.title,
-          ),
+          course: courses.find((course) => course.id === enrollment.courseId),
         })),
     )
     .filter(
@@ -68,16 +64,12 @@ export default function TrainerCertificates() {
           <span>{eligible.length} ready to issue</span>
         </div>
         {eligible.map((item) => (
-          <div
-            className="trainer-certificate-row"
-            key={`${item.trainee.id}-${item.course.id}`}
-          >
+          <div className="trainer-certificate-row">
             <div className="trainer-certificate-icon">
               <Award size={19} />
             </div>
             <div>
               <strong>{item.trainee.name}</strong>
-              <span>{item.course.title}</span>
             </div>
             <b>{item.enrollment.progress}% complete</b>
             <button
@@ -113,7 +105,6 @@ export default function TrainerCertificates() {
           <h2>Issue certificate?</h2>
           <p>
             <strong>{selected.trainee.name}</strong> completed{" "}
-            <strong>{selected.course.title}</strong> at 100%.
           </p>
           <div>
             <button
